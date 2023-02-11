@@ -1,5 +1,4 @@
 const router = require('express').Router();
-const mongoose = require('mongoose');
 
 const reservationModel = require('../models/reservation');
 
@@ -24,7 +23,6 @@ router.post('/reservation/put-item', async (req, res) =>{
 
 router.post('/reservation/get-items', async (req, res) => {
     try{
-        console.log(req)
         const allTodoItems = await reservationModel.find({
             date: req.body.date
         });
@@ -37,8 +35,7 @@ router.post('/reservation/get-items', async (req, res) => {
 
 router.delete('/reservation/item/:id', async (req, res)=>{
     try{
-        console.log(req.params.id)
-        const deleteItem = await reservationModel.findByIdAndDelete(req.params.id);
+        await reservationModel.findByIdAndDelete(req.params.id);
         res.status(200).json('Item Deleted');
     }catch(err){
         res.json(err);
