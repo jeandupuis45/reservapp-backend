@@ -14,8 +14,8 @@ app.use(cors());
 
 
 
-const TodoItemRoute = require('./routes/todoItems')
 const reservationRoute = require('./routes/reservation')
+const userRoute = require('./routes/user')
 
 
 mongoose.connect(process.env.DB_CONNECT)
@@ -23,7 +23,8 @@ mongoose.connect(process.env.DB_CONNECT)
 .catch(err => console.log(err))
 
 
-app.use('/', reservationRoute);
+app.use(reservationRoute);
+app.use(userRoute);
 
 
 app.listen(PORT, ()=> console.log("Server connected"));

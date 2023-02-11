@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 
 const reservationModel = require('../models/reservation');
 
-router.post('/api/put-item', async (req, res) =>{
+router.post('/reservation/put-item', async (req, res) =>{
     try{
         const newItem = new reservationModel({
             _id: req.body.date + 'T' + req.body.startTime + '.000Z',
@@ -19,10 +19,10 @@ router.post('/api/put-item', async (req, res) =>{
         console.log(err)
         res.json(err);
     }
-} )
+})
 
 
-router.post('/api/get-items', async (req, res) => {
+router.post('/reservation/get-items', async (req, res) => {
     try{
         console.log(req)
         const allTodoItems = await reservationModel.find({
@@ -35,7 +35,7 @@ router.post('/api/get-items', async (req, res) => {
 })
 
 
-router.delete('/api/item/:id', async (req, res)=>{
+router.delete('/reservation/item/:id', async (req, res)=>{
     try{
         console.log(req.params.id)
         const deleteItem = await reservationModel.findByIdAndDelete(req.params.id);
